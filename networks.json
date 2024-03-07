@@ -1,0 +1,8 @@
+{
+  "goerli": {
+    "ProofBearer": {
+      "address": "0x4bB0a205fceD93c8834b379c461B07BBe6aAE622",
+      "startBlock": 9865948
+    }
+  }
+}
