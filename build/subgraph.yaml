@@ -2,7 +2,7 @@ specVersion: 1.0.0
 indexerHints:
   prune: auto
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum
     name: ProofBearer
@@ -28,8 +28,8 @@ dataSources:
         - Unpaused
       abis:
         - name: ProofBearer
-          file: ./abis/ProofBearer.json
+          file: ProofBearer/abis/ProofBearer.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleTransfer
-      file: ./src/proof-bearer.ts
+      file: ProofBearer/ProofBearer.wasm
