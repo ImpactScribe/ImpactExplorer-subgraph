@@ -25,5 +25,11 @@ export function handleTransfer(event: TransferEvent): void {
     return;
   }
   entity.tokenAccount = tokenAccount.value;
+  let receipt = event.receipt;
+  if (!receipt) {
+    return;
+  }
+  entity.from = receipt.logs[0].topics[1];
+  entity.to = receipt.logs[0].topics[2];
   entity.save();
 }

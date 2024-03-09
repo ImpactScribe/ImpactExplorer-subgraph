@@ -4,4 +4,6 @@ type Token @entity {
   ipfsUri: String!
   owner: Bytes!
   tokenAccount: Bytes!
+  from: Bytes!
+  to: Bytes!
 }
