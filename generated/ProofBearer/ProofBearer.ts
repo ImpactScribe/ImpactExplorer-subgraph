@@ -251,7 +251,7 @@ export class ProofBearer extends ethereum.SmartContract {
     let result = super.call(
       "DEFAULT_ADMIN_ROLE",
       "DEFAULT_ADMIN_ROLE():(bytes32)",
-      [],
+      []
     );
 
     return result[0].toBytes();
@@ -261,7 +261,7 @@ export class ProofBearer extends ethereum.SmartContract {
     let result = super.tryCall(
       "DEFAULT_ADMIN_ROLE",
       "DEFAULT_ADMIN_ROLE():(bytes32)",
-      [],
+      []
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -310,7 +310,7 @@ export class ProofBearer extends ethereum.SmartContract {
     let result = super.tryCall(
       "TRANSFER_ROLE",
       "TRANSFER_ROLE():(bytes32)",
-      [],
+      []
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -350,7 +350,7 @@ export class ProofBearer extends ethereum.SmartContract {
     let result = super.tryCall(
       "getApproved",
       "getApproved(uint256):(address)",
-      [ethereum.Value.fromUnsignedBigInt(tokenId)],
+      [ethereum.Value.fromUnsignedBigInt(tokenId)]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -371,7 +371,7 @@ export class ProofBearer extends ethereum.SmartContract {
     let result = super.tryCall(
       "getRoleAdmin",
       "getRoleAdmin(bytes32):(bytes32)",
-      [ethereum.Value.fromFixedBytes(role)],
+      [ethereum.Value.fromFixedBytes(role)]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -405,7 +405,7 @@ export class ProofBearer extends ethereum.SmartContract {
     let result = super.call(
       "isApprovedForAll",
       "isApprovedForAll(address,address):(bool)",
-      [ethereum.Value.fromAddress(owner), ethereum.Value.fromAddress(operator)],
+      [ethereum.Value.fromAddress(owner), ethereum.Value.fromAddress(operator)]
     );
 
     return result[0].toBoolean();
@@ -413,12 +413,12 @@ export class ProofBearer extends ethereum.SmartContract {
 
   try_isApprovedForAll(
     owner: Address,
-    operator: Address,
+    operator: Address
   ): ethereum.CallResult<boolean> {
     let result = super.tryCall(
       "isApprovedForAll",
       "isApprovedForAll(address,address):(bool)",
-      [ethereum.Value.fromAddress(owner), ethereum.Value.fromAddress(operator)],
+      [ethereum.Value.fromAddress(owner), ethereum.Value.fromAddress(operator)]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -495,7 +495,7 @@ export class ProofBearer extends ethereum.SmartContract {
     let result = super.call(
       "supportsInterface",
       "supportsInterface(bytes4):(bool)",
-      [ethereum.Value.fromFixedBytes(interfaceId)],
+      [ethereum.Value.fromFixedBytes(interfaceId)]
     );
 
     return result[0].toBoolean();
@@ -505,7 +505,7 @@ export class ProofBearer extends ethereum.SmartContract {
     let result = super.tryCall(
       "supportsInterface",
       "supportsInterface(bytes4):(bool)",
-      [ethereum.Value.fromFixedBytes(interfaceId)],
+      [ethereum.Value.fromFixedBytes(interfaceId)]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -541,7 +541,7 @@ export class ProofBearer extends ethereum.SmartContract {
     let result = super.tryCall(
       "tokenAccount",
       "tokenAccount(uint256):(address)",
-      [ethereum.Value.fromUnsignedBigInt(tokenId)],
+      [ethereum.Value.fromUnsignedBigInt(tokenId)]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -562,7 +562,7 @@ export class ProofBearer extends ethereum.SmartContract {
     let result = super.tryCall(
       "tokenByIndex",
       "tokenByIndex(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(index)],
+      [ethereum.Value.fromUnsignedBigInt(index)]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -578,7 +578,7 @@ export class ProofBearer extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(owner),
         ethereum.Value.fromUnsignedBigInt(index),
-      ],
+      ]
     );
 
     return result[0].toBigInt();
@@ -586,7 +586,7 @@ export class ProofBearer extends ethereum.SmartContract {
 
   try_tokenOfOwnerByIndex(
     owner: Address,
-    index: BigInt,
+    index: BigInt
   ): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
       "tokenOfOwnerByIndex",
@@ -594,7 +594,7 @@ export class ProofBearer extends ethereum.SmartContract {
       [
         ethereum.Value.fromAddress(owner),
         ethereum.Value.fromUnsignedBigInt(index),
-      ],
+      ]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -647,7 +647,7 @@ export class ProofBearer extends ethereum.SmartContract {
     let result = super.tryCall(
       "transferAllowed",
       "transferAllowed():(bool)",
-      [],
+      []
     );
     if (result.reverted) {
       return new ethereum.CallResult();

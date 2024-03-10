@@ -104,29 +104,29 @@ export class Token extends Entity {
     this.set("tokenAccount", Value.fromBytes(value));
   }
 
-  get from(): Bytes {
+  get from(): string {
     let value = this.get("from");
     if (!value || value.kind == ValueKind.NULL) {
       throw new Error("Cannot return null for a required field.");
     } else {
-      return value.toBytes();
+      return value.toString();
     }
   }
 
-  set from(value: Bytes) {
-    this.set("from", Value.fromBytes(value));
+  set from(value: string) {
+    this.set("from", Value.fromString(value));
   }
 
-  get to(): Bytes {
+  get to(): string {
     let value = this.get("to");
     if (!value || value.kind == ValueKind.NULL) {
       throw new Error("Cannot return null for a required field.");
     } else {
-      return value.toBytes();
+      return value.toString();
     }
   }
 
-  set to(value: Bytes) {
-    this.set("to", Value.fromBytes(value));
+  set to(value: string) {
+    this.set("to", Value.fromString(value));
   }
 }

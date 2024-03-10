@@ -1,3 +1,4 @@
+import { Bytes } from "@graphprotocol/graph-ts";
 import {
   Transfer as TransferEvent,
   ProofBearer as TokenContract,
@@ -5,31 +6,29 @@ import {
 import { Token } from "../generated/schema";
 
 export function handleTransfer(event: TransferEvent): void {
-  let entity = new Token(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  );
+  let token = Token.load(new Bytes(event.params.tokenId.toI32()));
   let tokenContract = TokenContract.bind(event.address);
-  entity.tokenId = event.params.tokenId;
-  let ipfsUri = tokenContract.try_tokenURI(event.params.tokenId);
-  if (ipfsUri.reverted) {
-    return;
+  if (!token) {
+    token = new Token(new Bytes(event.params.tokenId.toI32()));
+    token.tokenId = event.params.tokenId;
+    let ipfsUri = tokenContract.try_tokenURI(event.params.tokenId);
+    if (ipfsUri.reverted) {
+      return;
+    }
+    token.ipfsUri = ipfsUri.value;
+
+    let tokenAccount = tokenContract.try_tokenAccount(event.params.tokenId);
+    if (tokenAccount.reverted) {
+      return;
+    }
+    token.tokenAccount = tokenAccount.value;
   }
-  entity.ipfsUri = ipfsUri.value;
   let owner = tokenContract.try_ownerOf(event.params.tokenId);
   if (owner.reverted) {
     return;
   }
-  entity.owner = owner.value;
-  let tokenAccount = tokenContract.try_tokenAccount(event.params.tokenId);
-  if (tokenAccount.reverted) {
-    return;
-  }
-  entity.tokenAccount = tokenAccount.value;
-  let receipt = event.receipt;
-  if (!receipt) {
-    return;
-  }
-  entity.from = receipt.logs[0].topics[1];
-  entity.to = receipt.logs[0].topics[2];
-  entity.save();
+  token.owner = owner.value;
+  token.from = event.params.from.toHexString();
+  token.to = event.params.to.toHexString();
+  token.save();
 }
