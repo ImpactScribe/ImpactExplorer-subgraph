@@ -3,6 +3,9 @@
     "ProofBearer": {
       "address": "0x4bB0a205fceD93c8834b379c461B07BBe6aAE622",
       "startBlock": 9865948
+    },
+    "Contract": {
+      "address": "0x4b9e1520D6AD44C57d4e3B3B647ecCF46dA6e9d3"
     }
   }
 }

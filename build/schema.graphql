@@ -2,8 +2,16 @@ type Token @entity {
   id: Bytes!
   tokenId: BigInt!
   ipfsUri: String!
-  owner: Bytes!
+  owner: String!
   tokenAccount: Bytes!
   from: String!
   to: String!
+}
+type Listing @entity {
+  id: Bytes!
+  owner: String!
+  tokenId: BigInt!
+  price: BigInt!
+  token: Token!
+  holder: String!
 }

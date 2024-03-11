@@ -3,7 +3,7 @@ import {
   Transfer as TransferEvent,
   ProofBearer as TokenContract,
 } from "../generated/ProofBearer/ProofBearer";
-import { Token } from "../generated/schema";
+import { Token, Listing } from "../generated/schema";
 
 export function handleTransfer(event: TransferEvent): void {
   let token = Token.load(new Bytes(event.params.tokenId.toI32()));
@@ -27,7 +27,7 @@ export function handleTransfer(event: TransferEvent): void {
   if (owner.reverted) {
     return;
   }
-  token.owner = owner.value;
+  token.owner = owner.value.toHexString();
   token.from = event.params.from.toHexString();
   token.to = event.params.to.toHexString();
   token.save();
